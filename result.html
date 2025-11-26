@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VitScan – Results</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">VITSCAN</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+        <li onclick="window.location.href='index.html'">Home</li>
+        <li>Diagnosis</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2 style="text-align:center;">Prediction Result</h2>
+
+    <img id="resultImage" style="width:100%; border-radius:12px; margin-bottom:15px;" />
+
+    <div id="resultContent"></div>
+</div>
+
+<footer>
+    © 2025 VitScan – AI Health Diagnostics.
+</footer>
+
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+
+    const result = JSON.parse(localStorage.getItem("vitResult"));
+    const imagePreview = sessionStorage.getItem("previewImage");
+
+    document.getElementById("resultImage").src = imagePreview;
+
+    document.getElementById("resultContent").innerHTML = `
+        <h3>Predicted Deficiency: ${result.deficiency}</h3>
+        <p><b>Confidence:</b> ${result.confidence}</p>
+        <p><b>Symptoms Match:</b> ${result.symptom_match}</p>
+        <p><b>Suggestions:</b><br>${result.suggestions}</p>
+    `;
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VitScan – Result</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">VITSCAN</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+        <li onclick="goHome()">Home</li>
+        <li>Diagnosis</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<!-- SAME LAYOUT CONTAINER -->
+<div class="container">
+
+    <h2 style="text-align:center;">Prediction Result</h2>
+
+    <img id="previewImg" style="width:100%; border-radius:10px; margin-bottom:15px; display:block;">
+
+    <div class="input-group">
+        <label><b>Predicted Deficiency:</b></label>
+        <p id="def"></p>
+    </div>
+
+    <div class="input-group">
+        <label><b>Confidence:</b></label>
+        <p id="conf"></p>
+    </div>
+
+    <div class="input-group">
+        <label><b>Symptoms Match:</b></label>
+        <p id="match"></p>
+    </div>
+
+    <div class="input-group">
+        <label><b>Suggested Foods:</b></label>
+        <p id="sugg"></p>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 VitScan – AI Health Diagnostics.
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+
+    function goHome() {
+        window.location.href = "index.html";
+    }
+
+    // Load saved image
+    document.getElementById("previewImg").src =
+        sessionStorage.getItem("previewImage");
+
+    // Load model result
+    let result = JSON.parse(localStorage.getItem("vitResult"));
+
+    document.getElementById("def").innerText = result.deficiency;
+    document.getElementById("conf").innerText = result.confidence;
+    document.getElementById("match").innerText = result.symptom_match;
+    document.getElementById("sugg").innerText = result.suggestions;
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VitScan – AI Vitamin Detector</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">VITSCAN</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+        <li>Home</li>
+        <li>Diagnosis</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2 style="text-align:center;">AI Vitamin Deficiency Detector</h2>
+
+    <div class="input-group">
+        <label>Upload Image (Lips / Tongue / Eyes / Nails)</label>
+        <input type="file" id="imageInput" accept="image/*" />
+        <img id="previewImg" />
+    </div>
+
+    <div class="input-group">
+        <label>Enter Symptoms</label>
+        <textarea id="symptoms" placeholder="Example: dryness, pale skin, cracks"></textarea>
+    </div>
+
+    <button onclick="predict()">Predict Deficiency</button>
+
+    <div class="loader" id="loader"></div>
+</div>
+
+<footer>
+    © 2025 VitScan – AI Health Diagnostics.
+</footer>
+
+
+<script>
+    const API_URL = "http://127.0.0.1:5000/predict";
+
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+
+    document.getElementById("imageInput").addEventListener("change", function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById("previewImg").src = event.target.result;
+                document.getElementById("previewImg").style.display = "block";
+
+                sessionStorage.setItem("previewImage", event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    async function predict() {
+        const file = document.getElementById("imageInput").files[0];
+        const symptoms = document.getElementById("symptoms").value;
+
+        if (!file) {
+            alert("Please upload an image first.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("image", file);
+        formData.append("symptoms", symptoms);
+
+        document.getElementById("loader").style.display = "block";
+
+        let response = await fetch(API_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        let result = await response.json();
+
+        document.getElementById("loader").style.display = "none";
+
+        localStorage.setItem("vitResult", JSON.stringify(result));
+
+        window.location.href = "result.html"; // redirect
+    }
+</script>
+
+</body>
+</html>

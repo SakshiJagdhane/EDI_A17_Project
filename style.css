@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8f5e9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav {
+    width: 100%;
+    background: #2e7d32;
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+nav ul li {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: #2e7d32;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+.container {
+    width: 75%;
+    max-width: 480px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: auto;
+    /* ⬅ Centers Top, Bottom AND Left, Right */
+    margin-top: 40px;
+    /* Optional: control space from top */
+    margin-bottom: 40px;
+    display: flex;
+    gap: 25px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+
+footer {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+}
+
+.loader {
+    border: 6px solid #c8e6c9;
+    border-top: 6px solid #2e7d32;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+/* MAIN CONTAINER */
+.container {
+    width: 75%;
+    max-width: 480px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* INPUT FIELDS */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    height: 100px;
+    overflow-y: auto;
+    resize: none;
+}
+
+#previewImg {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+
+/* RESULT BOX */
+#resultBox {
+    padding: 20px;
+    background: #c8e6c9;
+    border-left: 6px solid #2e7d32;
+    border-radius: 8px;
+    display: none;
+}
+
+/* LOADER */
+.loader {
+    border: 6px solid #c8e6c9;
+    border-top: 6px solid #2e7d32;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+/* FIXED FOOTER */
+footer {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    width: 100%;
+
+    position: fixed;
+    /* FIXED */
+    bottom: 0;
+    /* STAY AT BOTTOM */
+    left: 0;
+    z-index: 1000;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fix spacing in result page */
+.result-container {
+    gap: 10px !important;   /* Reduce vertical spacing */
+}
+
+/* Fix spacing inside prediction details */
+.result-details p {
+    margin: 6px 0 !important; 
+}
+
+.result-details h3 {
+    margin-bottom: 8px !important;
+}
+/* Reduce spacing ONLY for result page */
+.container .input-group {
+    margin-bottom: 8px !important;
+}
+
+.container {
+    gap: 10px !important;
+}
